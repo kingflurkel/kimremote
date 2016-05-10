@@ -18,9 +18,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <h1>pick a hashtag</h1>
-              <p>Current: <span>{{hashtag}}</span></p>
-              <paper-input placeholder="hashtag" bind-value="intro"></paper-input>
-              <paper-button raised>Listen</paper-button>
+    <p>Current: <span>{{hashtag}}</span></p>
+    <paper-input placeholder="hashtag" bind-value="{{hashtag}}" value="{{hashtag}}"></paper-input>
+    <paper-button raised on-tap="_changeTag">Change tag</paper-button>
   </template>
   <script>
   (function() {
@@ -30,11 +30,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'kf-hashtag',
 
       properties: {
-        foo: {
+        hashtag: {
           type: String,
           value: 'kf-hashtag',
           notify: true
         }
+      },
+
+      _changeTag: function(){
+        this.fire('hash-changed', {msg: this.hashtag});
       }
     });
   })();
