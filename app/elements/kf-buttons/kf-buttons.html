@@ -19,6 +19,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-fab {
         --paper-fab-background: var(--paper-grey-400);
       }
+      .green {
+           background-color: var(--paper-green-500);
+      }
     </style>
     <div class="vertical layout center">
                 
@@ -28,9 +31,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="whitespace"></div>
 
                 <div class="horizontal layout center">
-                <paper-fab icon="av:fast-rewind"></paper-fab>
-                <paper-fab class="bigone" icon="av:play-arrow"></paper-fab>
-                <paper-fab icon="av:fast-forward"></paper-fab>
+                <paper-fab on-tap="_rew" icon="av:fast-rewind"></paper-fab>
+                <paper-fab class="bigone" icon="{{playericon}}" id="playbtn" on-tap="_play"></paper-fab>
+                <paper-fab on-tap="_fwd" icon="av:fast-forward"></paper-fab>
                 </div>
 
               </div>
@@ -43,12 +46,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'kf-buttons',
 
       properties: {
-        foo: {
-          type: String,
-          value: 'kf-buttons',
-          notify: true
+        playing: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            observer: "_changeplaying"
+          }
+      },
+
+      ready: function(){
+        this.playericon = "av:play-arrow";
+        this.playing = false;
+      },
+
+      _changeplaying: function() {
+          if (this.playing) {
+            this.playericon = "av:pause";
+            this.$.playbtn.toggleClass("green", true);
+          } else {
+            this.playericon = "av:play-arrow";
+            this.$.playbtn.toggleClass("green", false);
+          }
+        },
+
+        _play: function() {
+          if (this.playing) {
+            this.playing = false;
+            this.fire('pause');
+          } else {
+            this.playing = true;
+            this.fire('play');
+          }
+        },
+
+        _rew: function(){
+          this.fire('skip-back');
+        },
+
+        _fwd: function(){
+          this.fire('skip-fwd');
         }
-      }
+
     });
   })();
   </script>
