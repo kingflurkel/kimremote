@@ -72,8 +72,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="home">
               <div class="vertical layout center">
                 
-                <paper-input placeholder="hashtag" bind-value="intro"></paper-input>
-
+                
+                <p>You're listening to #<span>kimradio</span></p>
                 <div class="whitespace"></div>
                 <div class="whitespace"></div>
 
@@ -90,6 +90,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <p>rewind button</p>
               <p>Play pause</p>
               <p>forward</p> -->
+            </section>
+
+            <section data-route="hashtag">
+              <h1>pick a hashtag</h1>
+              <p>Current: <span>{{params.hashtag}}</span></p>
+              <paper-input placeholder="hashtag" bind-value="intro"></paper-input>
+              <paper-button raised>Listen</paper-button>
             </section>
 
             <section data-route="choosewifi">
@@ -118,6 +125,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!--   <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" class="horizontal layout"> -->
           <a data-route="home" href="/" on-click="onDataRouteClick">
             <iron-icon icon="home"></iron-icon>
+          </a>
+
+          <a data-route="hashtag" href="/hashtag/currenthash" on-click="onDataRouteClick">
+            <iron-icon src="images/hash.svg"></iron-icon>
           </a>
 
           <a data-route="choosewifi" href="/choosewifi" on-click="onDataRouteClick">
