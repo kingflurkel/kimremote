@@ -70,52 +70,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
-              <div class="vertical layout center">
-                
-                
-                <p>You're listening to #<span>kimradio</span></p>
-                <div class="whitespace"></div>
-                <div class="whitespace"></div>
-
-                <div class="horizontal layout center">
-                <paper-fab icon="av:fast-rewind"></paper-fab>
-                <paper-fab class="bigone" icon="av:play-arrow"></paper-fab>
-                <paper-fab icon="av:fast-forward"></paper-fab>
-                </div>
-
-              </div>
-              <!-- 
-              <h1>home</h1>
-              <p>hashtagchooser</p>
-              <p>rewind button</p>
-              <p>Play pause</p>
-              <p>forward</p> -->
+              <kf-buttons></kf-buttons>
             </section>
 
             <section data-route="hashtag">
-              <h1>pick a hashtag</h1>
-              <p>Current: <span>{{params.hashtag}}</span></p>
-              <paper-input placeholder="hashtag" bind-value="intro"></paper-input>
-              <paper-button raised>Listen</paper-button>
+            <kf-hashtag hashtag="hashtagggg"></kf-hashtag>
             </section>
 
             <section data-route="choosewifi">
-              <h1>wifi</h1>
-              <p>menu with wifi stations</p>
-              <p>on select; show text input for wifi passw</p>
-              <p>Submit button</p>
+              <kf-wifi></kf-wifi>
             </section>
 
             <section data-route="settings">
-              <h1>settings</h1>
-              <p>Unpair device</p>
-              <p>Change wifi access point</p>
-              <p>Default hashtag</p>
+              <kf-settings></kf-settings>
             </section>
 
             <section data-route="about">
-              <h1>about</h1>
-              <p>Etherex integratie met de koers van radiocoin</p>
+              <kf-about></kf-about>
             </section>
 
           </iron-pages>

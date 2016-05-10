@@ -1,0 +1,55 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="kf-buttons">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-fab {
+        --paper-fab-background: var(--paper-grey-400);
+      }
+    </style>
+    <div class="vertical layout center">
+                
+                
+                <p>You're listening to #<span>kimradio</span></p>
+                <div class="whitespace"></div>
+                <div class="whitespace"></div>
+
+                <div class="horizontal layout center">
+                <paper-fab icon="av:fast-rewind"></paper-fab>
+                <paper-fab class="bigone" icon="av:play-arrow"></paper-fab>
+                <paper-fab icon="av:fast-forward"></paper-fab>
+                </div>
+
+              </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'kf-buttons',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'kf-buttons',
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
