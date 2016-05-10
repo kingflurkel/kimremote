@@ -15,8 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Polymer Starter Kit" />
-  <title>Polymer Starter Kit</title>
+  <meta name="generator" content="Radio Remote" />
+  <title>Radio Remote</title>
   <!-- Place favicon.ico in the `app/` directory -->
 
   <!-- Chrome for Android theme color -->
@@ -36,7 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <meta name="apple-mobile-web-app-title" content="Radio Remote">
   <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 
   <!-- Tile icon for Win8 (144x144) -->
@@ -63,37 +63,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-        <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="/" on-click="onDataRouteClick">
-            <iron-icon icon="home"></iron-icon>
-            <span>Home</span>
-          </a>
+      <div class="vertical layout full">
 
-          <a data-route="choosewifi" href="/choosewifi" on-click="onDataRouteClick">
-            <iron-icon icon="info"></iron-icon>
-            <span>wifi</span>
-          </a>
-
-          <a data-route="settings" href="/settings" on-click="onDataRouteClick">
-            <iron-icon icon="mail"></iron-icon>
-            <span>settings</span>
-          </a>
-
-          <a data-route="about" href="/about" on-click="onDataRouteClick">
-            <iron-icon icon="mail"></iron-icon>
-            <span>about</span>
-          </a>
-        </paper-menu>
+       
       
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
+              <div class="vertical layout center">
+                
+                <paper-input placeholder="hashtag" bind-value="intro"></paper-input>
+
+                <div class="whitespace"></div>
+                <div class="whitespace"></div>
+
+                <div class="horizontal layout center">
+                <paper-fab icon="av:fast-rewind"></paper-fab>
+                <paper-fab class="bigone" icon="av:play-arrow"></paper-fab>
+                <paper-fab icon="av:fast-forward"></paper-fab>
+                </div>
+
+              </div>
+              <!-- 
               <h1>home</h1>
               <p>hashtagchooser</p>
               <p>rewind button</p>
               <p>Play pause</p>
-              <p>forward</p>
+              <p>forward</p> -->
             </section>
 
             <section data-route="choosewifi">
@@ -116,6 +112,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </section>
 
           </iron-pages>
+
+           <div class="horizontal layout center-center pickers">
+
+      <!--   <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" class="horizontal layout"> -->
+          <a data-route="home" href="/" on-click="onDataRouteClick">
+            <iron-icon icon="home"></iron-icon>
+          </a>
+
+          <a data-route="choosewifi" href="/choosewifi" on-click="onDataRouteClick">
+            <iron-icon icon="notification:wifi"></iron-icon>
+          </a>
+
+          <a data-route="settings" href="/settings" on-click="onDataRouteClick">
+            <iron-icon icon="settings"></iron-icon>
+          </a>
+
+          <a data-route="about" href="/about" on-click="onDataRouteClick">
+            <iron-icon icon="pets"></iron-icon>
+          </a>
+    <!--     </paper-menu> -->
+
+      </div>
+
+                      <div class="whitespace"></div>
+
+
+        </div>
         
     <!-- Uncomment next block to enable Service Worker support (1/2) -->
     <!--

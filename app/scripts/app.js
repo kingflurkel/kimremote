@@ -60,15 +60,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   // Close drawer after menu item is selected if drawerPanel is narrow
   app.onDataRouteClick = function() {
-    var drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
-    }
+    // var drawerPanel = document.querySelector('#paperDrawerPanel');
+    // if (drawerPanel.narrow) {
+    //   drawerPanel.closeDrawer();
+    // }
   };
 
   // Scroll page to top and expand header
   app.scrollPageToTop = function() {
-    document.getElementById('mainContainer').scrollTop = 0;
+    //document.getElementById('mainContainer').scrollTop = 0;
   };
 
 })(document);

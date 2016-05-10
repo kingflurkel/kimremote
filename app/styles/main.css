@@ -8,7 +8,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 body {
-  background: #fafafa;
+  background: #333;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
+  color: white;
+}
+
+iron-pages {
+	height: 100%;
+}
+
+
+
+
+a {
+    color: #0060B6;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:#00A0C6; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+.full {
+	height: 100vh;
+}
+
+.whitespace {
+	height: 20px;
+}
+
+.pickers {
+}
+
+.pickers a {
+	margin: 15px;
+}
+
+.bigone {
+	width: 100px;
+	height: 100px;
+	margin: 0px 20px 0px 20px;
 }
