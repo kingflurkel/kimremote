@@ -9,6 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<script src="../../bower_components/firebase/firebase.js"></script>
 
 <dom-module id="kf-hashtag">
   <template>
@@ -17,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
+     <iron-ajax
+        id="ajax" method="POST"></iron-ajax>
     <h1>pick a hashtag</h1>
     <p>Current: <span>{{hashtag}}</span></p>
     <paper-input placeholder="hashtag" bind-value="{{hashtag}}" value="{{hashtag}}"></paper-input>
@@ -35,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'kf-hashtag',
           notify: true
         },
-        
+
         serial: {
           type: String,
           oberserver: '_serial',
@@ -45,16 +50,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _changeTag: function(){
         this.fire('hash-changed', {msg: this.hashtag});
-        this.setfb('hashtag', this.hashtag, function(e){
-          console.log(e);
-        });
+        this.setfb('hashtag', this.hashtag);
+        this.setfbserial('hashtag', this.hashtag);
       },
 
-      setfb: function(param, val, fn){
+      setfbserial: function(param, val){
         var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
         var resp = firebase.set(val);
-        fn(resp);
       },
+
+      setfb: function(param, val){
+        // var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        // var resp = firebase.set(val);
+        // fn(resp);
+        this.$.ajax.url = "https://dagboeka.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
+        this.$.ajax.body = JSON.stringify({'command':param, 'value':val});
+        this.$.ajax.generateRequest();
+      }
     });
   })();
   </script>

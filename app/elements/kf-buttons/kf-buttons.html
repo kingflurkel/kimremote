@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
 <script src="../../bower_components/firebase/firebase.js"></script>
 
 <dom-module id="kf-buttons">
@@ -25,6 +27,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div class="vertical layout center">
+
+      <iron-ajax
+        id="ajax" method="POST"></iron-ajax>
                 
                 <p>You're listening to #<span>kimradio</span></p>
                 <div class="whitespace"></div>
@@ -68,24 +73,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
-      setfb: function(param, val, fn){
-        var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
-        var resp = firebase.set(val);
-        fn(resp);
+      setfb: function(param){
+        // var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        // var resp = firebase.set(val);
+        // fn(resp);
+        this.$.ajax.url = "https://dagboeka.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
+        this.$.ajax.body = JSON.stringify({'command':param});
+        this.$.ajax.generateRequest();
       },
+
+      
 
       _changeplaying: function() {
           if (this.playing) {
             this.playericon = "av:pause";
             this.$.playbtn.toggleClass("green", true);
-            this.setfb('playpause', true, function(e){
-              console.log(e);
-            });
+            this.setfb('pause');
           } else {
             this.playericon = "av:play-arrow";
-            this.setfb('playpause', false, function(e){
-              console.log(e);
-            });
+            this.setfb('play');
             this.$.playbtn.toggleClass("green", false);
           }
         },
@@ -102,16 +108,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         _rew: function(){
           this.fire('skip-back');
-          this.setfb('back', true, function(e){
-            console.log(e);
-          });
+          this.setfb('back');
         },
 
         _fwd: function(){
           this.fire('skip-fwd');
-          this.setfb('fwd', true, function(e){
-            console.log(e);
-          });
+          this.setfb('fwd');
         }
 
     });
