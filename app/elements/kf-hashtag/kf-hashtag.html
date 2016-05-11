@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
      <iron-ajax
         id="ajax" method="POST"></iron-ajax>
+        <iron-localstorage name="kimradio-hashtag" value="{{hashtag}}"></iron-localstorage>
     <h1>pick a hashtag</h1>
     <p>Current: <span>{{hashtag}}</span></p>
     <paper-input placeholder="hashtag" bind-value="{{hashtag}}" value="{{hashtag}}"></paper-input>
@@ -41,9 +42,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           notify: true
         },
 
+        inithashtag: {
+          type: String,
+          observer: '_inithashtag'
+        },
+
         serial: {
           type: String,
-          oberserver: '_serial',
+          observer: '_serial',
           value: '3FB4AE'
         }
       },
@@ -52,6 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.fire('hash-changed', {msg: this.hashtag});
         this.setfb('hashtag', this.hashtag);
         this.setfbserial('hashtag', this.hashtag);
+      },
+
+      _inithashtag: function(){
+        this.hashtag = this.inithashtag;
       },
 
       setfbserial: function(param, val){

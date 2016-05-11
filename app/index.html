@@ -77,14 +77,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 on-pause="" 
                 on-play=""
                 initserial="{{params.serial}}"
-                serial="{{serial}}">
+                serial="{{serial}}"
+                hashtag="{{hashtag}}">
               </kf-buttons>
             </section>
 
             <section data-route="hashtag">
               <kf-hashtag 
                 on-hash-changed="" 
-                hashtag="{{params.hashtag}}"
+                inithashtag="{{params.hashtag}}"
+                hashtag="{{hashtag}}"
                 serial="{{serial}}">
               </kf-hashtag>
             </section>
@@ -114,7 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="home"></iron-icon>
           </a>
 
-          <a data-route="hashtag" href="/hashtag/currenthash" on-click="onDataRouteClick">
+          <a data-route="hashtag" href="/hashtag" on-click="onDataRouteClick">
             <iron-icon src="images/hash.svg"></iron-icon>
           </a>
 
