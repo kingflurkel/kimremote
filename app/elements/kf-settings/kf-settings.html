@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
 
 <dom-module id="kf-settings">
   <template>
@@ -18,6 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <h1>settings</h1>
+    <paper-input label="Device serial" bind-value="{{serial}}" value="{{serial}}"></paper-input>
+    <iron-localstorage name="kimradioserial" value="{{serial}}"></iron-localstorage>
               <p>Unpair device</p>
               <p>Change wifi access point</p>
               <p>Default hashtag</p>
@@ -33,6 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         foo: {
           type: String,
           value: 'kf-settings',
+          notify: true
+        },
+        serial: {
+          type: String,
+          observer: '_serial',
+          value: '3FB4AE',
           notify: true
         }
       }

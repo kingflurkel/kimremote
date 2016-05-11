@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<script src="../../bower_components/firebase/firebase.js"></script>
 
 <dom-module id="kf-buttons">
   <template>
@@ -50,7 +51,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: false,
             notify: true,
             observer: "_changeplaying"
-          }
+          },
+        serial: {
+          type: String,
+          oberserver: '_serial',
+          value: '3FB4AE'
+        }
       },
 
       ready: function(){
@@ -58,12 +64,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.playing = false;
       },
 
+      _serial: function(){
+
+      },
+
+      setfb: function(param, val, fn){
+        var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        var resp = firebase.set(val);
+        fn(resp);
+      },
+
       _changeplaying: function() {
           if (this.playing) {
             this.playericon = "av:pause";
             this.$.playbtn.toggleClass("green", true);
+            this.setfb('playpause', true, function(e){
+              console.log(e);
+            });
           } else {
             this.playericon = "av:play-arrow";
+            this.setfb('playpause', false, function(e){
+              console.log(e);
+            });
             this.$.playbtn.toggleClass("green", false);
           }
         },
@@ -80,10 +102,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         _rew: function(){
           this.fire('skip-back');
+          this.setfb('back', true, function(e){
+            console.log(e);
+          });
         },
 
         _fwd: function(){
           this.fire('skip-fwd');
+          this.setfb('fwd', true, function(e){
+            console.log(e);
+          });
         }
 
     });

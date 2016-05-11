@@ -75,31 +75,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 on-skip-fwd="" 
                 on-skip-back="" 
                 on-pause="" 
-                on-play="">
+                on-play=""
+                serial="{{serial}}">
               </kf-buttons>
             </section>
 
             <section data-route="hashtag">
               <kf-hashtag 
                 on-hash-changed="" 
-                hashtag="hashtagggg">
+                hashtag="hashtagggg"
+                serial="{{serial}}">
               </kf-hashtag>
             </section>
 
-            <section data-route="choosewifi">
-              <kf-wifi></kf-wifi>
+            <section data-route="choosewifi"
+            >
+              <kf-wifi serial="{{serial}}"></kf-wifi>
             </section>
 
             <section data-route="settings">
-              <kf-settings></kf-settings>
+              <kf-settings serial="{{serial}}"></kf-settings>
             </section>
 
             <section data-route="about">
-              <kf-about></kf-about>
+              <kf-about serial="{{serial}}"></kf-about>
             </section>
 
             <section data-route="upload">
-              <kf-upload></kf-upload>
+              <kf-upload serial="{{serial}}"></kf-upload>
             </section>
 
           </iron-pages>
