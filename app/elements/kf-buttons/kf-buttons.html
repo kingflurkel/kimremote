@@ -25,6 +25,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .green {
            background-color: var(--paper-green-500);
       }
+      small {
+        font-style: italic;
+      }
     </style>
     <div class="vertical layout center">
 
@@ -32,6 +35,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         id="ajax" method="POST"></iron-ajax>
                 
                 <p>You're listening to #<span>{{hashtag}}</span></p>
+                <template is="dom-if" if="{{!radioonline}}">
+                  <small>Radio offline.</small>
+                </template>
                 <div class="whitespace"></div>
                 <div class="whitespace"></div>
 
@@ -60,11 +66,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         serial: {
           type: String,
           value: '3FB4AE',
+          observer: '_init'
         },
         initserial: {
           type: String,
           observer: '_serial',
           value: '3FB4AE'
+        },
+        radioonline: {
+          type: Boolean,
+          value: false
         }
       },
 
@@ -75,6 +86,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _serial: function(){
         this.serial = this.initserial;
+      },
+
+      _init: function(){
+        var self = this;
+        var status = new Firebase("https://dagboeka.firebaseio.com/remote/"+this.serial+"/status/");
+        var resp = status.on('value', function(snapshot){
+          console.log(snapshot.val());
+          if(snapshot.val()=='online'){
+            self.radioonline = true;
+          }
+        });
       },
 
       setfb: function(param){
