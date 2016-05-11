@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <div class="vertical layout center">
       <p>Choose a hashtag</p>
-      <input type="text" value="{{hashtag}}" placeholder="hashtag">
+      <paper-input label="hashtag" bind-value="{{hashtag}}" value="{{hashtag}}" placeholder="hashtag"></paper-input>
       <p>&nbsp;</p>
       <p>Pick your file(s)</p>
       <input type="file" id="upload" multiple>
@@ -41,12 +41,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: 'kf-upload',
           notify: true
+        },
+        hashtag: {
+          type: String,
+          observer: '_hashtag'
         }
       },
 
       ready: function(){
         self = this;
         this.$.upload.addEventListener('change', this.handleFileSelect, false);
+      },
+
+      _hashtag: function() {
+        console.log(this.hashtag);
       },
 
       handleFileSelect: function(evt){
@@ -68,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       firebase: function(theblob){
-        var location = this.hashtag;
+        var location = 'clips/'+self.hashtag;
         var firebase = new Firebase("https://dagboeka.firebaseio.com/" + location);
             //console.log(firebase);
             self.newref = firebase.push({
