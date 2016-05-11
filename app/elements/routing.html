@@ -25,6 +25,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.scrollPageToTop();
     });
 
+    page('/upload', function () {
+      app.route = 'upload';
+      app.scrollPageToTop();
+    });
+
     page('/hashtag/:hashtag', function (data) {
       app.route = 'hashtag';
       app.params = data.params;
