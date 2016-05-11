@@ -43,7 +43,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_serial',
           value: '3FB4AE',
           notify: true
+        },
+        initserial: {
+          type: String,
+          observer: '_initserial'
         }
+      },
+
+      _initserial: function(){
+        this.serial = this.initserial;
       }
     });
   })();

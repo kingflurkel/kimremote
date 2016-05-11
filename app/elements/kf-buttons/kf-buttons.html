@@ -59,7 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
         serial: {
           type: String,
-          oberserver: '_serial',
+          value: '3FB4AE',
+        },
+        initserial: {
+          type: String,
+          observer: '_serial',
           value: '3FB4AE'
         }
       },
@@ -70,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _serial: function(){
-
+        this.serial = this.initserial;
       },
 
       setfb: function(param){

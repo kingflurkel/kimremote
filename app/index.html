@@ -76,6 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 on-skip-back="" 
                 on-pause="" 
                 on-play=""
+                initserial="{{params.serial}}"
                 serial="{{serial}}">
               </kf-buttons>
             </section>
@@ -83,18 +84,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="hashtag">
               <kf-hashtag 
                 on-hash-changed="" 
-                hashtag="hashtagggg"
+                hashtag="{{params.hashtag}}"
                 serial="{{serial}}">
               </kf-hashtag>
             </section>
 
-            <section data-route="choosewifi"
-            >
+            <section data-route="choosewifi">
               <kf-wifi serial="{{serial}}"></kf-wifi>
             </section>
 
             <section data-route="settings">
-              <kf-settings serial="{{serial}}"></kf-settings>
+              <kf-settings initserial="{{params.serial}}" serial="{{serial}}"></kf-settings>
             </section>
 
             <section data-route="about">

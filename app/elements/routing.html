@@ -36,7 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.scrollPageToTop();
     });
 
-    page('/settings', function (data) {
+    page('/settings', function () {
+      app.route = 'settings';
+      app.scrollPageToTop();
+    });
+
+    page('/settings/:serial', function (data) {
       app.route = 'settings';
       app.params = data.params;
       app.scrollPageToTop();
