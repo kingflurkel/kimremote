@@ -76,11 +76,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       firebase: function(theblob){
-        var location = 'clips/'+self.hashtag;
-        var firebase = new Firebase("https://dagboeka.firebaseio.com/" + location);
+        var location = "rawclips";
+        var firebase = new Firebase("https://activiteiten.firebaseio.com/" + location);
             //console.log(firebase);
-            self.newref = firebase.push({
+        self.newref = firebase.push({
               data: theblob,
+              datetime: Date.now(),
+              nickname: "kftest"
+            });
+        var firebase2 = new Firebase("https://activiteiten.firebaseio.com/hashtags/"+self.hashtag);
+        console.log(self.newref.key());
+        firebase2.push({
+              clipkey: self.newref.key(),
               datetime: Date.now(),
               nickname: "kftest"
             });

@@ -70,15 +70,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       setfbserial: function(param, val){
-        var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        var firebase = new Firebase("https://activiteiten.firebaseio.com/remote/" + this.serial+'/'+param);
         var resp = firebase.set(val);
       },
 
       setfb: function(param, val){
-        // var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        // var firebase = new Firebase("https://activiteiten.firebaseio.com/remote/" + this.serial+'/'+param);
         // var resp = firebase.set(val);
         // fn(resp);
-        this.$.ajax.url = "https://dagboeka.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
+        this.$.ajax.url = "https://activiteiten.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
         this.$.ajax.body = JSON.stringify({'command':param, 'value':val});
         this.$.ajax.generateRequest();
       }

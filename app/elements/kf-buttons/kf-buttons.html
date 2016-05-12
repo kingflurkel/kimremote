@@ -90,7 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _init: function(){
         var self = this;
-        var status = new Firebase("https://dagboeka.firebaseio.com/remote/"+this.serial+"/status/");
+        var status = new Firebase("https://activiteiten.firebaseio.com/remote/"+this.serial+"/status/");
         var resp = status.on('value', function(snapshot){
           console.log(snapshot.val());
           if(snapshot.val()=='online'){
@@ -100,10 +100,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       setfb: function(param){
-        // var firebase = new Firebase("https://dagboeka.firebaseio.com/remote/" + this.serial+'/'+param);
+        // var firebase = new Firebase("https://activiteiten.firebaseio.com/remote/" + this.serial+'/'+param);
         // var resp = firebase.set(val);
         // fn(resp);
-        this.$.ajax.url = "https://dagboeka.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
+        this.$.ajax.url = "https://activiteiten.firebaseio.com/remote/"+this.serial+"/queue/tasks.json";
         this.$.ajax.body = JSON.stringify({'command':param});
         this.$.ajax.generateRequest();
       },
